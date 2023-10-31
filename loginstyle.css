@@ -68,3 +68,11 @@ footer {
 a {
     color: #FFFFFF;
 }
+
+#afterformregister {
+    text-align: center;
+}
+
+#afterformregister a {
+    color: #6200B3;
+}
