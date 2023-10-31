@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TechQ Registration</title>
+    <link rel="stylesheet" type="text/css" href="registerstyle.css">
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var firstname = document.getElementById("firstname").value;
+            var lastname = document.getElementById("lastname").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirm_password = document.getElementById("confirm_password").value;
+            var account_type = document.querySelector('input[name="account_type"]:checked');
+
+            // Simple validation checks
+            if (username.length < 6 || username.length > 24) {
+                alert("Username must be between 6 and 24 characters.");
+                return false;
+            }
+
+            if (password !== confirm_password) {
+                alert("Passwords do not match.");
+                return false;
+            }
+
+            if (username === "" || firstname === "" || lastname === "" || email === "" || password === "" || confirm_password === "" || !account_type) {
+                alert("All fields must be filled out, and an account type must be selected.");
+                return false;
+            }
+
+            // Additional validation can be added here
+
+            return true; // Form is valid
+        }
+    </script>
+     <script>
+        function displayTooltip() {
+            var tooltip = document.getElementById("tooltip");
+            tooltip.style.display = "block";
+        }
+
+        function hideTooltip() {
+            var tooltip = document.getElementById("tooltip");
+            tooltip.style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <h1>TechQ Registration</h1>
+    <form action="registration_process.php" method="POST" onsubmit="return validateForm();">
+        <label for="username">Username:</label>
+        <div onmouseover="displayTooltip();" onmouseout="hideTooltip();">
+            <input type="text" id="username" name="username" required>
+            <div id="tooltip" class="tooltip" style="display: none;">User name must be between 6-24 charecters. </div>
+        </div>
+        <br>
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" name="firstname" required><br><br>
+
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="confirm_password">Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+
+        <label>Account Type:</label>
+        <br><br>
+            <input type="radio" id="asking" name="account_type" value="Asking"> 
+            <label for="asking">Asking</label>
+            <input type="radio" id="answering" name="account_type" value="Answering">
+            <label for="answering">Answering</label>   
+            
+                
+        <input type="submit" value="Register">
+    </form>
+    
+    <p id="afterformlogin">Already have an account? <a href="logintechq.html">Login</a></p>
+    <br><br>
+
+    <footer>
+        <p>&copy; 2023 TechQ. All rights reserved. <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+    </footer>
+</body>
+
+</html>
