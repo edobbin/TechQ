@@ -1,12 +1,12 @@
         body {
-            background-color: #F7E7D9;
+            background-color: #FFFFFF;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
 
         header {
-            background-color: #2E86AB;
+            background-color: #26ABE8;
             color: #FFFFFF;
             text-align: center;
             padding: 10px;
@@ -14,7 +14,7 @@
 
         h1 {
             text-align: center;
-            color: #2E86AB;
+            color: #6200B3;
         }
 
         form {
@@ -22,7 +22,7 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 25px;
-            border: 3px solid #2E86AB;
+            border: 3px solid #6200B3;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 4%;
@@ -35,7 +35,7 @@
         label {
             
             margin-top: 15px;
-            color: #2E86AB;
+            color: #6200B3;
         }
 
         input[type="text"],
@@ -44,14 +44,14 @@
             width: 90%;
             padding: 10px;
             margin-top: 5px;
-            border: 1px solid #2E86AB;
+            border: 1px solid #6200B3;
             border-radius: 4px;
         }
 
         
 
         input[type="submit"] {
-            background-color: #2E86AB;
+            background-color: #6200B3;
             color: #FFFFFF;
             padding: 10px 15px;
             border: none;
@@ -64,13 +64,21 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #1F5D8B;
+            background-color: #3B0086;
         }
 
         footer {
-            background-color: #2E86AB;
+            background-color: #6200B3;
             color: #FFFFFF;
             text-align: center;
             padding: 10px;
+        }
+
+        a {
+            color: #FFFFFF;
+        }
+
+        #afterformlogin a {
+            color: #6200B3;
         }
 
