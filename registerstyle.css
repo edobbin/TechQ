@@ -68,6 +68,8 @@
         }
 
         footer {
+            position: sticky;
+            bottom: 0;
             background-color: #6200B3;
             color: #FFFFFF;
             text-align: center;
