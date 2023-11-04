@@ -1,5 +1,5 @@
 /* Reset some default styles */
-body, , ul, li {
+body, ul, li {
     margin: 0;
     padding: 0;
 }
