@@ -29,8 +29,9 @@ header nav {
 }
 
 header nav .logo {
-    font-size: 24px;
+    font-size: 1.85em;
     color: #fff; /* Text color updated */
+    margin-left: 2%;
 }
 
 header nav ul {
@@ -85,4 +86,14 @@ footer {
     text-align: center;
     padding: 10px;
     margin-top: auto;
+}
+
+.logo img {
+    width: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#currentPage {
+    text-decoration: underline;
 }
