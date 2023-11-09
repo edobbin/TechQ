@@ -16,7 +16,7 @@ h1 {
 form {
     background-color: #FFFFFF;
     max-width: 800px;
-    width: 800px;
+    width: 400px;
     margin: 0 auto;
     padding: 25px;
     border: 3px solid #6200B3;
@@ -25,8 +25,7 @@ form {
     margin-top: 4%;
     flex: 1;
     margin-bottom: 2%;
-    display: block;
-    height: auto;
+    
 }
 
 label {
