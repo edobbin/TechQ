@@ -1,0 +1,42 @@
+Entity Descriptions:
+
+User Entity:
+
+Stores information about users, including their email, username, profile picture, and points.
+Question Entity:
+
+Represents questions posted by users. Contains details such as title, content, tags, files, points, and timestamp.
+Answer Entity:
+
+Represents answers provided by users to specific questions. Includes content, files, points for answering, points for likes, total points, and timestamp.
+Tag Entity:
+
+Stores information about tags used to categorize questions. Includes a tag name and an optional description.
+Relationships:
+
+A user can ask multiple questions (one-to-many relationship).
+A question belongs to one user (many-to-one relationship).
+An answer is associated with one user and one question (many-to-one relationship with both entities).
+A tag can be associated with multiple questions, and a question can have multiple tags (many-to-many relationship).
+
++-----------------+          +------------------+          +------------------+
+|      User       |          |     Question     |          |      Answer      |
++-----------------+          +------------------+          +------------------+
+| userId          |<>-------<| questionId       |          | answerId         |
+| email           |          | userId           |          | userId           |
+| username        |          | title            |          | questionId       |
+| profilePicture  |          | content          |          | content          |
+| points          |          | tags (array)     |          | files (array)    |
+|                 |          | files (array)    |          | pointsForAnswering|
+|                 |          | points           |          | pointsForLikes   |
+|                 |          | timestamp        |          | totalPoints      |
+|                 |          |                  |          | timestamp        |
++-----------------+          +------------------+          +------------------+
+                                |
+                                |          +--------------+
+                                +--------->|     Tag      |
+                                           +--------------+
+                                           | tagId        |
+                                           | name         |
+                                           | description  |
+                                           +--------------+
