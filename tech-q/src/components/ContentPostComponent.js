@@ -53,7 +53,6 @@ class ContentPostComponent extends React.Component {
         <p>User: {this.state.user}</p>
         <p>Points: {this.state.points}</p>
         <p>Date Posted: {this.state.datePosted.toString()}</p>
-        {/* Additional rendering logic or UI components can be added here */}
       </div>
     );
   }

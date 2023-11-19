@@ -1,5 +1,5 @@
 import React from 'react';
-import ContentPostComponent from './ContentPostComponent'; // Adjust the import path based on your file structure
+import ContentPostComponent from './ContentPostComponent';
 
 class QuestionComponent extends ContentPostComponent {
   constructor(props) {
@@ -24,7 +24,6 @@ class QuestionComponent extends ContentPostComponent {
   }
 
   delete() {
-    // Assuming listOfQuestions is part of your component's state
     const { questionId, answers } = this.state;
 
     this.setState(prevState => ({
@@ -72,7 +71,6 @@ class QuestionComponent extends ContentPostComponent {
         <p>Content: {this.state.content}</p>
         <p>Tags: {this.state.tags.join(', ')}</p>
         <p>Upvotes: {this.getUpvotes()}</p>
-        {/* Additional rendering logic or UI components specific to QuestionComponent */}
       </div>
     );
   }

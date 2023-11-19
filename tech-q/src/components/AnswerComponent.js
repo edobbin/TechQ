@@ -4,8 +4,7 @@ import ContentPostComponent from './ContentPostComponent';
 class AnswerComponent extends ContentPostComponent {
   constructor(props) {
     super(props);
-
-    // Additional properties specific to AnswerComponent
+    
     this.state = {
       answerId: props.answerId,
       upvoteCount: 0,
@@ -43,7 +42,6 @@ class AnswerComponent extends ContentPostComponent {
   }
 
   render() {
-    // Extend the render method to include additional UI for AnswerComponent
     return (
       <div>
         <h2>{this.state.content}</h2>
@@ -53,7 +51,6 @@ class AnswerComponent extends ContentPostComponent {
         <p>Answer ID: {this.state.answerId}</p>
         <p>Upvotes: {this.state.upvoteCount}</p>
         <p>Downvotes: {this.state.downvoteCount}</p>
-        {/* Additional rendering logic or UI components specific to AnswerComponent */}
       </div>
     );
   }
