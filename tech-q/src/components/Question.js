@@ -50,35 +50,3 @@ const Question = () => {
 };
 
 export default Question;
-
-
-
-// import React from 'react';
-// import QuestionComponent from './QuestionComponent'; // Adjust the import path based on your file structure
-
-// const QuestionPage = () => {
-//   const sampleQuestion = {
-//     questionId: '123456', // Provide a unique questionId
-//     title: 'How to use React?',
-//     content: 'I am new to React. Can someone guide me on how to get started?',
-//     tags: ['react', 'javascript'],
-//     answers: [], // An array of answer objects (if any)
-//     upvotes: ['user1', 'user2'], // An array of user IDs who upvoted
-//   };
-
-//   return (
-//     <div>
-//       <h1>Question Page</h1>
-//       <QuestionComponent
-//         questionId={sampleQuestion.questionId}
-//         title={sampleQuestion.title}
-//         content={sampleQuestion.content}
-//         tags={sampleQuestion.tags}
-//         answers={sampleQuestion.answers}
-//         upvotes={sampleQuestion.upvotes}
-//       />
-//     </div>
-//   );
-// };
-
-// export default QuestionPage;

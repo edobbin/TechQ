@@ -6,12 +6,12 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = (userData) => {
-    // Your login logic here
+    // login
     setUser(userData);
   };
 
   const logout = () => {
-    // Your logout logic here
+    // logout
     setUser(null);
   };
 
