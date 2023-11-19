@@ -1,8 +1,40 @@
 // Home.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import AnswerComponent from './AnswerComponent'
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from '../firebase';
+import {  signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+
+  useEffect(()=>{
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          const uid = user.uid;
+          // ...
+          console.log("uid", uid)
+        } else {
+          // User is signed out
+          // ...
+          console.log("user is logged out")
+        }
+      });
+  }, [])
+
+  const navigate = useNavigate();
+ 
+    const handleLogout = () => {               
+        signOut(auth).then(() => {
+        // Sign-out successful.
+            navigate("/");
+            console.log("Signed out successfully")
+        }).catch((error) => {
+        // An error happened.
+        });
+    }
 
   const sectionStyle = {
     padding: '2%',
@@ -31,6 +63,7 @@ return (
   <section style={sectionStyle}>
     <h1 style={{textAlign: 'center',}}>Home Page</h1>
     <AnswerComponent content="Some answer content" user="Jane Doe" points={5} answerId={1} />
+    <button onClick={handleLogout}>Logout</button>
   </section>
   <footer style={footerStyle}>
   <p>&copy; 2023 TechQ. All rights reserved. <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>

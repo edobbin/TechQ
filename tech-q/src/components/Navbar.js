@@ -1,14 +1,21 @@
 // Navbar.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
+
+
 const Navbar = () => {
+  const location = useLocation()
+  if(location.pathname === '/' || location.pathname === '/signup') {
+    return null
+  }
+
   return (
     <nav className="navbar">
       <ul className="nav-list">
         <li className="nav-item">
-          <Link to="/" className="nav-link">
+          <Link to="/home" className="nav-link">
             Home
           </Link>
         </li>
@@ -25,6 +32,11 @@ const Navbar = () => {
         <li className="nav-item">
           <Link to="/contact" className="nav-link">
             Contact
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/profile" className="nav-link">
+            Profile
           </Link>
         </li>
       </ul>
