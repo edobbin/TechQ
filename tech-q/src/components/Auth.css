@@ -1,0 +1,43 @@
+/* This is the CSS file used for Login.js and Signup.js */
+
+.auth main {
+    margin: auto;
+    padding: 0%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+}
+
+.auth form {
+    min-width: 50%;
+}
+
+.auth div {
+    padding: 2%;
+}
+
+.auth label {
+    margin-right: 3%;
+}
+
+.auth input {
+    margin-bottom: 2%;
+    width: 100%;
+}
+
+.auth button {
+    background-color: #6200B3;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 50%;
+    align-self: center;
+}
+
+.auth a {
+    color: #6200B3;
+}
