@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import './Auth.css'
 import Signup from './Signup';
+import Navbar from './Navbar'
 import { useAuth } from '../contexts/AuthContext'; // Import the useAuth hook
  
 
@@ -36,10 +37,12 @@ const Login = () => {
     return (
       <>
         <main className="auth">
+        
           <section>
             <div>
-              <h1>TechQ Login</h1>
+              
               <form>
+                <h1>TechQ Login</h1>
                 <div>
                   <label htmlFor="email-address">Email: </label>
                   <input
@@ -65,13 +68,14 @@ const Login = () => {
                 <div>
                   <button onClick={onLogin}>Login</button>
                 </div>
-              </form>
+              
               <p className="text-sm text-white text-center">
                 No account yet?{' '}
                 <NavLink to="/signup">
                   Sign up
                 </NavLink>
               </p>
+              </form>
             </div>
           </section>
         </main>
