@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
+import { collection, addDoc } from "firebase/firestore";
 import './Auth.css';
 import Login from './Login';
 
@@ -12,6 +13,8 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+
+  
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,10 +25,25 @@ const Signup = () => {
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
       // Signed in
-      const user = userCredential.user;
+      
       console.log(user);
+
+
+try {
+  const docRef = await addDoc(collection(db, "users"), {
+    username: '',
+    points: 0,
+    upvotes: 0,
+    downvotes: 0,
+    
+  });
+  console.log("Document written with ID: ", docRef.id);
+} catch (e) {
+  console.error("Error adding document: ", e);
+}
+
       alert("Account creation successful! Please sign in.");
       navigate("/");
     } catch (error) {
