@@ -10,6 +10,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -33,7 +34,8 @@ const Signup = () => {
 
 try {
   const docRef = await addDoc(collection(db, "users"), {
-    username: '',
+    id: user.uid ,
+    username: username,
     points: 0,
     upvotes: 0,
     downvotes: 0,
@@ -71,6 +73,20 @@ try {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="Email address"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="username">
+                  Username:
+                </label>
+                <input
+                  type="username"
+                  label="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  placeholder="username"
                 />
               </div>
 

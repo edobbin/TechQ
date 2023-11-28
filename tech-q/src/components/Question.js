@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { getFirestore } from "firebase/firestore";
+import { useAuth } from '../contexts/AuthContext';
 import { db } from "../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc } from "firebase/firestore";
 import "./Question.css";
 
 const Question = () => {
+  const { user } = useAuth();
   const navigate = useNavigate();
+  const [textareaValue, setTextareaValue] = useState('');
+
+  const handleTextareaChange = (event) => {
+    setTextareaValue(event.target.value);
+  };
   const sectionStyle = {
     padding: "2%",
     paddingTop: "5%",
@@ -34,15 +41,17 @@ const Question = () => {
 
 try {
   const docRef = await addDoc(collection(db, "Post"), {
-    username: '',
+    created_by_user: user.uid,
+    questionID: db.collection(),
+    content: textareaValue.value,
     points: 0,
     upvotes: 0,
     downvotes: 0,
-    
+    date_created: Date(),
   });
   console.log("Document written with ID: ", docRef.id);
   alert("Question posted");
-      navigate("/");
+     // navigate("/");
 } catch (e) {
   console.error("Error adding document: ", e);
 }
@@ -56,7 +65,7 @@ try {
         <h1>Ask a Question</h1>
         <form action="post_question.php" method="POST">
           <label htmlFor="question">Your Question:</label>
-          <textarea id="question" name="question" rows="5" required></textarea>
+          <textarea id="question" name="question" value={textareaValue} onChange={handleTextareaChange} rows="5" required></textarea>
           <button type="submit" onClick={onSubmit}>Post Question</button>
         </form>
 
