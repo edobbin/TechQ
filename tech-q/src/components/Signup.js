@@ -64,7 +64,7 @@ const Signup = () => {
         console.log("Document written with ID: ", docRef.id);
   
         // Navigate to user profile or home page after sign-up
-        navigate("/user-profile"); // Adjust the route as needed
+        navigate("/profile"); // Adjust the route as needed
   
       } catch (e) {
         console.error("Error adding document: ", e);
