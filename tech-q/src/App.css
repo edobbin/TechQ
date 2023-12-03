@@ -13,6 +13,36 @@
   }
 }
 
+.UserProfile {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.UserProfileRow {
+  display: flex;
+  margin: 10px 0;
+}
+
+.UserProfileHeader {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.UserProfileBody {
+  flex: 3;
+}
+
+.UserProfileImage {
+  margin-right: 20px;
+}
+
+/* Additional styling for editable fields and other elements */
+.AboutMe textarea, .AboutMe button {
+  margin: 10px 0;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
