@@ -10,6 +10,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [pic, setUrl] = useState('');
@@ -69,7 +70,7 @@ const Signup = () => {
       } catch (e) {
         console.error("Error adding document: ", e);
       }
-  
+ 
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -103,6 +104,20 @@ const Signup = () => {
                 <label htmlFor="username">First Name:</label>
                 <input type="text" value={username} onChange={(e) => setUser(e.target.value)} required />
               </div> */}
+
+              <div>
+                <label htmlFor="username">
+                  Username:
+                </label>
+                <input
+                  type="username"
+                  label="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  placeholder="username"
+                />
+              </div>
 
               <div>
                 <label htmlFor="password">
