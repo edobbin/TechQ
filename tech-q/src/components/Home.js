@@ -60,7 +60,6 @@ return (
   <>
   <section style={sectionStyle}>
     <h1 style={{textAlign: 'center',}}>Home Page</h1>
-    <AnswerComponent content="Some answer content" user="Jane Doe" points={5} answerId={1} />
     <button onClick={handleLogout}>Logout</button>
   </section>
   <footer style={footerStyle}>
