@@ -1,5 +1,5 @@
 import { collection, addDoc, doc, deleteDoc } from "firebase/firestore";
-import { db } from './firebase'; // Adjust the import path as per your project structure
+import { db } from '../firebase'; // Adjust the import path as per your project structure
 
 class Answer {
   constructor(answer, creator_user_ID, question_ID) {
