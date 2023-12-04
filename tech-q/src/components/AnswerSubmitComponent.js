@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Answer from './AnswerComponent';
-import { auth } from './firebase'; // Import Firebase auth
+import { auth } from '../firebase'; // Import Firebase auth
 
 const AnswerSubmitComponent = ({ questionId }) => {
   const [answerText, setAnswerText] = useState('');

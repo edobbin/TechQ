@@ -1,14 +1,15 @@
 import { collection, addDoc, doc, deleteDoc } from "firebase/firestore";
-import { db } from './firebase'; // Adjust the import path as per your project structure
+import { db } from '../firebase'; // Adjust the import path as per your project structure
 
 class Question {
-  constructor(additional_info, creator_user_ID, languages, question, tools, date, time) {
+  constructor(additional_info, creator_user_ID, languages, question, tools, date, time,question_difficulty) {
     this.additional_info = additional_info;
     this.creator_user_ID = creator_user_ID;
     this.languages = languages; 
     this.question = question;
     this.tools = tools;
     this.created_date_time = { date, time };
+    this.question_difficulty=question_difficulty
     this.question_ID = null; // Will be set after saving the document
   }
 
