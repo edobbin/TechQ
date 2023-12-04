@@ -13,9 +13,7 @@
     min-width: 50%;
 }
 
-.auth div {
-    padding: 2%;
-}
+
 
 .auth label {
     margin-right: 3%;
@@ -59,7 +57,7 @@
     -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
     -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
     -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-    padding-left: 0px;
+   
   
 }
 .container2{
@@ -79,8 +77,7 @@
     width: 100%;
 }
 .headcolor{
-    font-family: JosefinSans-Bold;
-    font-size: 30px;
+   
     color: #fff;
     line-height: 1.2;
     text-align: center;
@@ -93,6 +90,11 @@
     background-color: #6200B3;
     padding-top: 50px;
     padding-bottom: 39px;
+    font-size: 60px;
+}
+
+.inside{
+    padding: 5%;
 }
 
 .loginform{
