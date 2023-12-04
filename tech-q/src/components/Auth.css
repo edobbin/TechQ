@@ -101,5 +101,11 @@
     width: 100%;
     position: relative;
 }
-
+.signUpDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 2%;
+}
 .temp{}

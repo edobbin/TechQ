@@ -79,7 +79,7 @@ const Signup = () => {
   return (
     <main className='auth'>
       <section>
-        <div>
+        <div className="signUpDiv">
           <div>
             <h1> Sign Up for TechQ </h1>
             <form>
