@@ -5,6 +5,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
+import { onSnapshot } from 'firebase/firestore';
 
 function UserProfile() {
   const profileStyle = {
@@ -59,32 +60,44 @@ function UserProfile() {
   // Fetch user data from Firestore on component mount
   // Fetch user data from Firestore on component mount
   useEffect(() => {
+    console.log(user)
+    console.log('Firestore:', db);
+
     if (user) {
-      try {
-        // Fetch data from Firestore based on the logged-in user's UID
-        const docRef = doc(db, 'users', user.uid);
-        getDoc(docRef).then((docSnap) => {
-          if (docSnap.exists()) {
-            const data = docSnap.data();
-            setUserData(data);
-            setFname(data.fname); // Update based on actual data structure
-            setLname(data.lname);
-            setEmail(data.email);
-            setProjects(data.projects || []);
-            setWorkExperience(data.workExperience || []);
-            setSchool(data.school);
-            setLanguages(data.languages || []);
-            setSkills(data.skills)
-            setUrl(data.pic); // Assuming 'picture' is the field name for the profile image
+      const docRef = doc(db, 'users', user.uid);
+      console.log('1. User ID: ', user.uid)
+      const fetchData = async () => {
+          try {
+              const docSnap = await getDoc(docRef);
+              console.log('User ID: ', user.uid)
+              console.log('Document UID:', docSnap.id)
+              console.log('Document Snapshot:', docSnap);
+              console.log('Document Exists: ', docSnap.exists())
+              if (docSnap.exists()) {
+                  const data = docSnap.data();
+                  console.log('Document Data:', data);
+                  setUserData(data);
+                  setFname(data.fname); // Update based on actual data structure
+                  setLname(data.lname);
+                  setEmail(data.email);
+                  setProjects(data.projects || []);
+                  setWorkExperience(data.workExperience || []);
+                  setSchool(data.school);
+                  setLanguages(data.languages || []);
+                  setSkills(data.skills)
+                  setUrl(data.pic); // Assuming 'picture' is the field name for the profile image
             console.log('UserData state:', userData);
+          } else {
+            console.log('Document does not exist');
           }
-        });
-      }
+        }
       catch (error) {
         console.error('Error fetching data:', error);
       }
+      };
+      fetchData();
     }
-  }, [user, userData]);
+  }, [user]);
 
  // Handler functions for each field
     const handleFnameChange = (e) => {
@@ -194,8 +207,9 @@ function UserProfile() {
                 </div>
                 <h4>Email: {user.email}</h4>
                 <div className="UserProfileInfo">
-                <p>Username: {userData.username}</p>
+                <p>Name: {fname} {lname}</p>
                 <p>School: {school}</p>
+                <p>Languages: {languages}</p>
                 <p>Rank: {userData.rank}</p>
                 <p>Solved: {userData.solved}</p>
                 <button onClick={handleLogout}>Logout</button>
