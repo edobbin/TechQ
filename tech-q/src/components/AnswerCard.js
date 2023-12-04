@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { db } from '../firebase'; // Adjust the import path as per your project structure
 import { doc, getDoc } from 'firebase/firestore';
+import { createObjectFromDoc } from '../DocumentUtil';
 
 class AnswerCard extends Component {
   constructor(props) {
@@ -38,12 +39,28 @@ class AnswerCard extends Component {
     }
   }
 
-  handleUpvote = () => {
-    // Handle upvote logic
+  handleUpvote = async () => {
+    try {
+        const answerObject = await createObjectFromDoc(this.answerData.answer_id, "answers");
+        console.log(answerObject);
+
+        answerObject.update({answer_ID:this.answerObject.answer_votes+1});
+      } catch (error) {
+        console.error("Error creating answer object from document.", error);
+      }
+    
+    
   };
 
-  handleDownvote = () => {
-    // Handle downvote logic
+  handleDownvote = async () => {
+    try {
+        const answerObject = await createObjectFromDoc(this.answerData.answer_id, "answers");
+        console.log(answerObject);
+
+        answerObject.update({answer_ID:answerObject.answer_votes-1});
+      } catch (error) {
+        console.error("Error creating answer object from document.", error);
+      }
   };
 
   render() {

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Question from './QuestionComponent'; // Adjust the import path as needed
 import { auth } from '../firebase'; // Import Firebase auth
 
-const QuestionSubmitComponent = () => {
+const QuestionSubmitComponent = ({ onQuestionSubmit }) => {
   const [questionText, setQuestionText] = useState('');
   const [additionalInfo, setAdditionalInfo] = useState('');
   const [languages, setLanguages] = useState('');
@@ -36,12 +36,13 @@ const QuestionSubmitComponent = () => {
     );
 
     try {
-      await newQuestion.save();
-      navigate(-1); // Go back to the previous page
-      return newQuestion;
-    } catch (error) {
-      console.error("Error saving the question: ", error);
-    }
+        await newQuestion.save();
+        if (onQuestionSubmit) {
+          onQuestionSubmit(newQuestion);
+        }
+      } catch (error) {
+        console.error("Error saving the question: ", error);
+      }
   };
 
   return (

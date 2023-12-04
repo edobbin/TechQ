@@ -6,7 +6,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Home from './components/Home';
 import About from './components/About';
-import Question from './components/Question';
+import Question from './components/Q_APostList';
 import Contact from './components/Contact';
 import UserProfile from './UserProfile'; // Imported UserProfile
 import { AuthProvider } from './contexts/AuthContext';
