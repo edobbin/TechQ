@@ -58,6 +58,117 @@ const Home = () => {
 
 return (
   <>
+  <div id="main-content">
+    <div id="center-column">
+        <table>
+            <thead>
+                <tr>
+                    <th>Center Table 1</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Table content here</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Center Table 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Table content here</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Center Table 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Table content here</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="right-column">
+        <table>
+            <thead>
+                <tr>
+                    <th>Right Table 1</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Table content here</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Right Table 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Table content here</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Right Table 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Table content here</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Right Table 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Table content here</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="bottom-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Bottom Table</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Table content here</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
   <section style={sectionStyle}>
     <h1 style={{textAlign: 'center',}}>Home Page</h1>
     <AnswerComponent content="Some answer content" user="Jane Doe" points={5} answerId={1} />
