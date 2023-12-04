@@ -90,9 +90,22 @@ class Q_APostList extends Component {
           );
     }
 
-    return currentPosts.map((post, index) => (
-      <Q_APostComponent key={index} question={post.question} answers={post.answers} />
-    ));
+    
+    // return currentPosts.map((post, index) => (
+    //   <Q_APostComponent key={index} question={post.question} answers={post.answers} />
+    // ));
+    return currentPosts.map((post, index) => {
+      const questionText = post.question && post.question.text;
+      const answerTexts = post.answers && post.answers.map(answer => answer.text);
+    
+      return (
+        <Q_APostComponent
+          key={index}
+          question={questionText}
+          answers={answerTexts}
+        />
+      );
+    });
   };
 
   render() {
