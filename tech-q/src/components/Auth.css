@@ -6,7 +6,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 5%;
+    margin: 0%;
 }
 
 .auth form {
@@ -23,13 +23,14 @@
 
 .auth input {
     margin-bottom: 2%;
-    width: 100%;
+    width: 90%;
     border-radius: 15px;
     height: 35px;
     font-size: 16px;
     padding-top: 2;
     padding-inline-start: 10px;
     padding-bottom: 2px;
+    position: relative;    
 }
 
 .auth button {
@@ -48,3 +49,55 @@
     color: #6200B3;
 }
 
+.container{
+    width: 500px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+    padding-left: 0px;
+  
+}
+.container2{
+    width: 100%;  
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    position: relative;
+    background-color: #fff;
+    width: 100%;
+}
+.headcolor{
+    font-family: JosefinSans-Bold;
+    font-size: 30px;
+    color: #fff;
+    line-height: 1.2;
+    text-align: center;
+  
+    display: block;
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0%;
+    background-color: #6200B3;
+    padding-top: 50px;
+    padding-bottom: 39px;
+}
+
+.loginform{
+    width: 100%;
+    position: relative;
+}
+
+.temp{}
