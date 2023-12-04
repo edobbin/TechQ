@@ -44,6 +44,7 @@ const Login = () => {
               <div className='container'>
               <form className='loginform'>
                 <div className='headcolor'>TechQ Login</div>
+                <div className='inside'>
                 <div>
                   <label htmlFor="email-address">Email: </label>
                   <input
@@ -76,6 +77,7 @@ const Login = () => {
                   Sign up
                 </NavLink>
               </p>
+              </div>
               </form>
               </div>
               </div>
