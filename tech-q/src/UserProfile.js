@@ -3,10 +3,38 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db, storage } from './firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { onSnapshot } from 'firebase/firestore';
 
 function UserProfile() {
+  const profileStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 'auto',
+    padding: '2%',
+  };
+
+  const imgStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+
   // State variables
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading, error, logout] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {               
+    signOut(auth).then(() => {
+    // Sign-out successful.
+        navigate("/");
+        console.log("Signed out successfully")
+    }).catch((error) => {
+    // An error happened.
+    });
+}
   
   const [userData, setUserData] = useState({});
   const [image, setImage] = useState(null);
@@ -32,25 +60,42 @@ function UserProfile() {
   // Fetch user data from Firestore on component mount
   // Fetch user data from Firestore on component mount
   useEffect(() => {
+    console.log(user)
+    console.log('Firestore:', db);
+
     if (user) {
-        // Fetch data from Firestore based on the logged-in user's UID
       const docRef = doc(db, 'users', user.uid);
-      getDoc(docRef).then((docSnap) => {
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          setUserData(data);
-          setFname(data.fname); // Update based on actual data structure
-          setLname(data.lname);
-          setEmail(data.email);
-          setProjects(data.projects || []);
-          setWorkExperience(data.workExperience || []);
-          setSchool(data.school);
-          setLanguages(data.languages || []);
-          setSkills(data.skills)
-          setUrl(data.pic); // Assuming 'picture' is the field name for the profile image
-          console.log(userData);
+      console.log('1. User ID: ', user.uid)
+      const fetchData = async () => {
+          try {
+              const docSnap = await getDoc(docRef);
+              console.log('User ID: ', user.uid)
+              console.log('Document UID:', docSnap.id)
+              console.log('Document Snapshot:', docSnap);
+              console.log('Document Exists: ', docSnap.exists())
+              if (docSnap.exists()) {
+                  const data = docSnap.data();
+                  console.log('Document Data:', data);
+                  setUserData(data);
+                  setFname(data.fname); // Update based on actual data structure
+                  setLname(data.lname);
+                  setEmail(data.email);
+                  setProjects(data.projects || []);
+                  setWorkExperience(data.workExperience || []);
+                  setSchool(data.school);
+                  setLanguages(data.languages || []);
+                  setSkills(data.skills)
+                  setUrl(data.pic); // Assuming 'picture' is the field name for the profile image
+            console.log('UserData state:', userData);
+          } else {
+            console.log('Document does not exist');
+          }
         }
-      });
+      catch (error) {
+        console.error('Error fetching data:', error);
+      }
+      };
+      fetchData();
     }
   }, [user]);
 
@@ -154,14 +199,20 @@ function UserProfile() {
         {!user && <p>User is not authenticated</p>}
     
         {user && (
-        <div className="UserProfile">
+        <div className="UserProfile" style={profileStyle}>
+            
             <div className="UserProfileRow UserProfileHeader">
                 <div className="UserProfileImage">
-                <img src={pic || 'http://via.placeholder.com/100'} alt="Profile" />
+                <img src={pic || 'http://via.placeholder.com/100'} style={imgStyle} alt="Profile" />
                 </div>
+                <h4>Email: {user.email}</h4>
                 <div className="UserProfileInfo">
+                <p>Name: {fname} {lname}</p>
+                <p>School: {school}</p>
+                <p>Languages: {languages}</p>
                 <p>Rank: {userData.rank}</p>
                 <p>Solved: {userData.solved}</p>
+                <button onClick={handleLogout}>Logout</button>
                 </div>
             </div>
 
