@@ -105,7 +105,7 @@ class Q_APostList extends Component {
     return (
       <div className="q-a-post-list">
         {creatingNewPost ? (
-          <Q_APostComponent initialData={/* initial data for new post */} />
+          <Q_APostComponent initialData={0} />
         ) : (
           <>
             {this.renderPosts()}
