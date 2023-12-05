@@ -34,7 +34,10 @@ const About = () => {
         <p>We are dedicated to providing a safe and respectful environment for all members to learn and grow. Join us in this exciting journey of curiosity, exploration, and tech discovery!</p>
     </section>
     <footer style={footerStyle}>
-    <p>&copy; 2023 TechQ. All rights reserved. <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+    <p>
+          &copy; 2023 TechQ. All rights reserved. <a href="/about">About TechQ</a> |{' '}
+          <a href="/contact">Contact Us</a>
+        </p>
     </footer>
     </>
   );

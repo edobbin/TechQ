@@ -2,6 +2,7 @@
 nav {
     background-color: #6200B3;
     padding: 10px;
+    padding-bottom: 2px;
   }
   
   ul {
@@ -23,5 +24,29 @@ nav {
   
   a:hover {
     color: #d19cff;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    margin-left: 30px;
+  }
+  
+  .logo {
+    width: 40px; /* Set the desired width */
+    height: auto;
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  
+  .website-name {
+    font-size: 2.5em; /* Set the desired font size */
+    font-weight: bold;
+  }
+
+  .nav-link.active {
+    color: #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    font-weight: bold;
   }
   
