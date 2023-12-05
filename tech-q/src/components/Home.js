@@ -74,16 +74,16 @@ const Home = () => {
     }
   };
 
-    const sectionStyle = {
-      padding: '2%',
-      paddingTop: '5%',
-      alignItema: 'center',
-      maxWidth: '75%',
-      display: 'flex',
-      flexDirection: 'column',
-      textAlign: 'left',
-      margin: '0 auto',
-  };
+const sectionStyle = {
+  padding: '2%',
+  paddingTop: '5%',
+  alignItema: 'center',
+  maxWidth: '75%',
+  display: 'flex',
+  flexDirection: 'column',
+  textAlign: 'left',
+  margin: '0 auto',
+};
 
   const footerStyle = {
     position: 'fixed',
@@ -160,8 +160,8 @@ const Home = () => {
       </section>
       <footer style={footerStyle}>
         <p>
-          &copy; 2023 TechQ. All rights reserved. <a href="/privacy">Privacy Policy</a> |{' '}
-          <a href="/terms">Terms of Service</a>
+          &copy; 2023 TechQ. All rights reserved. <a href="/about">About TechQ</a> |{' '}
+          <a href="/contact">Contact Us</a>
         </p>
       </footer>
     </>

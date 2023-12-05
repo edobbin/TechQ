@@ -7,6 +7,17 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { onSnapshot } from 'firebase/firestore';
 
+const footerStyle = {
+  position: "fixed",
+  bottom: "0",
+  width: "100%",
+  backgroundColor: "#6200B3",
+  color: "#fff",
+  textAlign: "center",
+  padding: "10px 0",
+  marginTop: "auto",
+};
+
 function UserProfile() {
   const profileStyle = {
     display: 'flex',
@@ -239,6 +250,12 @@ function UserProfile() {
             </div>
         </div>
         )}
+        <footer style={footerStyle}>
+       <p>
+          &copy; 2023 TechQ. All rights reserved. <a href="/about">About TechQ</a> |{' '}
+          <a href="/contact">Contact Us</a>
+        </p>
+      </footer>
     </>
     );
 };

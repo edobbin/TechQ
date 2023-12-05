@@ -112,9 +112,8 @@ const Question = () => {
 
       <footer style={footerStyle}>
         <p>
-          &copy; 2023 TechQ. All rights reserved.{" "}
-          <a href="/privacy">Privacy Policy</a> |{" "}
-          <a href="/terms">Terms of Service</a>
+          &copy; 2023 TechQ. All rights reserved. <a href="/about">About TechQ</a> |{' '}
+          <a href="/contact">Contact Us</a>
         </p>
       </footer>
     </>

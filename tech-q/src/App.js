@@ -10,6 +10,7 @@ import Question from './components/Question';
 import Contact from './components/Contact';
 import UserProfile from './UserProfile'; // Imported UserProfile
 import { AuthProvider } from './contexts/AuthContext';
+import MyQuestions from './components/MyQuestions';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/signup" element={<Signup/>}/>
           <Route path="/" element={<Login/>}/>
           <Route path="/home" element={<Home />} />
+          <Route path="/posted" element={<MyQuestions />} />
           <Route path="/about" element={<About />} />
           <Route path="/questions" element={<Question />} />
           <Route path="/contact" element={<Contact />} />
