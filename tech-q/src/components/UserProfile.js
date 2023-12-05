@@ -60,6 +60,7 @@ function UserProfile() {
   const [workExperience, setWorkExperience] = useState([
     { company: "", role: "", startDate: "", endDate: "" }
   ]);
+  const [username, setUsername] = useState('');
   const [school, setSchool] = useState('');
   const [languages, setLanguages] = useState([]);
   const [email, setEmail] = useState('');
@@ -91,6 +92,7 @@ function UserProfile() {
                   setFname(data.fname); // Update based on actual data structure
                   setLname(data.lname);
                   setEmail(data.email);
+                  setUsername(data.username);
                   setProjects(data.projects || []);
                   setWorkExperience(data.workExperience || []);
                   setSchool(data.school);
@@ -114,6 +116,10 @@ function UserProfile() {
     const handleFnameChange = (e) => {
         setFname(e.target.value);
     };
+
+    const handleUsernameChange = (e) => {
+      setUsername(e.target.value);
+  };
 
     const handleLnameChange = (e) => {
         setLname(e.target.value);
@@ -153,6 +159,7 @@ function UserProfile() {
         fname,
         lname,
         email,
+        username,
         projects,
         workExperience,
         school,
@@ -218,6 +225,7 @@ function UserProfile() {
                 </div>
                 <h4>Email: {user.email}</h4>
                 <div className="UserProfileInfo">
+                <p>Username: {username}</p>
                 <p>Name: {fname} {lname}</p>
                 <p>School: {school}</p>
                 <p>Languages: {languages}</p>

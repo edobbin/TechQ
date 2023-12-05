@@ -58,7 +58,7 @@ const Signup = () => {
           email, // This email is the one used for signup
           school,
           languages: languages.split(','), // Assuming languages are entered as a comma-separated list
-          username: '', // Add additional fields as required
+          username, // Add additional fields as required
           points: 0,
           // Include other fields as needed
         });
