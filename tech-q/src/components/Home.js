@@ -8,7 +8,6 @@ import { collection, getDocs, arrayUnion, doc, updateDoc, getDoc, deleteDoc } fr
 import { db } from '../firebase';
 import QuestionComponent from './QuestionComponent';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import profilecard from './Profile_Card';
 
 // function formatDate(date) {
 //   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -184,7 +183,6 @@ const sectionStyle = {
 
   return (
     <>
-   
       <section style={sectionStyle}>
       <h1>All Questions Posted</h1>
         <div style={{ paddingBottom: '10%' }}>
@@ -210,7 +208,12 @@ const sectionStyle = {
           </div>
         </div>
       </section>
-      
+      <footer style={footerStyle}>
+        <p>
+          &copy; 2023 TechQ. All rights reserved. <a href="/about">About TechQ</a> |{' '}
+          <a href="/contact">Contact Us</a>
+        </p>
+      </footer>
     </>
   );
 };

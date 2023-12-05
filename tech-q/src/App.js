@@ -11,7 +11,6 @@ import Contact from './components/Contact';
 import Profile from './components/Profile'; 
 import { AuthProvider } from './contexts/AuthContext';
 import MyQuestions from './components/MyQuestions';
-import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -28,7 +27,6 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<Profile />} /> 
         </Routes>
-        < Footer/>
       </Router>
     </AuthProvider>
   );
