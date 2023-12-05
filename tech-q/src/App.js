@@ -6,7 +6,8 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Home from './components/Home';
 import About from './components/About';
-import Question from './components/Q_APostList';
+import QAPostList from './components/QAPostList';
+import Post from './components/QAPost';
 import Contact from './components/Contact';
 import UserProfile from './UserProfile'; // Imported UserProfile
 import { AuthProvider } from './contexts/AuthContext';
@@ -21,9 +22,10 @@ const App = () => {
           <Route path="/" element={<Login/>}/>
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/questions" element={<Question />} />
+          <Route path="/questions" element={<QAPostList />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/profile" element={<UserProfile />} /> {/* Updated route */}
+          <Route path="/create-post" element={<Post />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
       </Router>
     </AuthProvider>

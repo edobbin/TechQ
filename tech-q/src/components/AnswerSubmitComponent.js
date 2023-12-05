@@ -1,62 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Answer from './AnswerComponent'; // Adjust the import path as needed
-import { auth } from '../firebase'; // Import Firebase auth
+import React, { Component } from 'react';
 
-const AnswerSubmitComponent = ({ questionId, onAnswerSubmit }) => {
-  const [answerText, setAnswerText] = useState('');
-  const [creatorUserId, setCreatorUserId] = useState(null);
-  //const navigate = useNavigate();
+class AnswerSubmitComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      writtenAnswer: '',
+      attachments: [],
+      showErrorPopup: false,
+    };
+  }
 
-  useEffect(() => {
-    // Set the creator user ID to the current user's ID
-    if (auth.currentUser) {
-      setCreatorUserId(auth.currentUser.uid);
-    }
-  }, []);
+  handleWrittenAnswerChange = (event) => {
+    this.setState({ writtenAnswer: event.target.value });
+  };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  handleAttachmentChange = (event) => {
+    this.setState({ attachments: event.target.files });
+  };
 
-    // Check if the creator user ID is available
-    if (!creatorUserId) {
-      console.error("No user ID found");
+  validateSubmission = () => {
+    const { writtenAnswer, attachments } = this.state;
+    return writtenAnswer.trim() !== '' || attachments.length > 0;
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!this.validateSubmission()) {
+      this.setState({ showErrorPopup: true });
+      setTimeout(() => {
+        this.setState({ showErrorPopup: false });
+        this.props.onClose(); // Close the modal
+      }, 6000);
       return;
     }
 
-    // Create a new Answer object
-    const newAnswer = new Answer(
-      answerText,
-      creatorUserId,
-      questionId,
-      new Date().toLocaleDateString(),
-      new Date().toLocaleTimeString()
-    );
-
-    // Save the new answer and navigate back
-    try {
-        await newAnswer.save();
-        if (this.props.onAnswerSubmit) {
-            this.props.onAnswerSubmit(newAnswer);
-        }
-      } catch (error) {
-        console.error("Error saving the answer: ", error);
-      }
+    this.props.onSubmit(this.state.writtenAnswer, this.state.attachments);
+    this.props.onClose(); // Close the modal after submission
   };
 
-  return (
-    <div className="answer-submit-component">
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={answerText}
-          onChange={(e) => setAnswerText(e.target.value)}
-          placeholder="Write your answer here"
-          required
-        />
-        <button type="submit">Post Answer</button>
-      </form>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div className="answer-submit-modal">
+        {this.state.showErrorPopup && (
+          <div className="error-popup">
+            Nothing was submitted. Please try again.
+          </div>
+        )}
+
+        <form onSubmit={this.handleSubmit}>
+          <textarea
+            placeholder="Your answer..."
+            value={this.state.writtenAnswer}
+            onChange={this.handleWrittenAnswerChange}
+          />
+          <input
+            type="file"
+            multiple
+            onChange={this.handleAttachmentChange}
+          />
+          <button type="submit">Submit Answer</button>
+        </form>
+      </div>
+    );
+  }
+}
 
 export default AnswerSubmitComponent;

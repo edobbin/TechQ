@@ -36,28 +36,28 @@ const Question = () => {
     marginTop: "auto",
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+//   const onSubmit = async (e) => {
+//     e.preventDefault();
 
-try {
-  const docRef = await addDoc(collection(db, "Post"), {
-    created_by_user: user.uid,
-    questionID: db.collection(),
-    content: textareaValue.value,
-    points: 0,
-    upvotes: 0,
-    downvotes: 0,
-    date_created: Date(),
-  });
-  console.log("Document written with ID: ", docRef.id);
-  alert("Question posted");
-     // navigate("/");
-} catch (e) {
-  console.error("Error adding document: ", e);
-}
+// try {
+//   const docRef = await addDoc(collection(db, "Post"), {
+//     created_by_user: user.uid,
+//     questionID: db.collection(),
+//     content: textareaValue.value,
+//     points: 0,
+//     upvotes: 0,
+//     downvotes: 0,
+//     date_created: Date(),
+//   });
+//   console.log("Document written with ID: ", docRef.id);
+//   alert("Question posted");
+//      // navigate("/");
+// } catch (e) {
+//   console.error("Error adding document: ", e);
+// }
 
       
-  };
+//  };
 
   return (
     <>

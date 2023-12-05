@@ -1,82 +1,96 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Question from './QuestionComponent'; // Adjust the import path as needed
-import { auth } from '../firebase'; // Import Firebase auth
+import React, { Component } from 'react';
+import './QuestionSubmitComponent.css';
 
-const QuestionSubmitComponent = ({ onQuestionSubmit }) => {
-  const [questionText, setQuestionText] = useState('');
-  const [additionalInfo, setAdditionalInfo] = useState('');
-  const [languages, setLanguages] = useState('');
-  const [tools, setTools] = useState('');
-  const [creatorUserId, setCreatorUserId] = useState(null);
-  const navigate = useNavigate();
+class QuestionSubmitComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      questionText: '',
+      languages: [''],
+      tools: [''],
+      expirationDateTime: '',
+      additionalInfo: ''
+    };
+  }
 
-  useEffect(() => {
-    if (auth.currentUser) {
-      setCreatorUserId(auth.currentUser.uid);
+  handleInputChange = (event, field, index) => {
+    if (field === 'languages' || field === 'tools') {
+      const items = [...this.state[field]];
+      items[index] = event.target.value;
+      this.setState({ [field]: items });
+    } else {
+      this.setState({ [field]: event.target.value });
     }
-  }, []);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!creatorUserId) {
-      console.error("No user ID found");
-      return;
-    }
-
-    const newQuestion = new Question(
-      additionalInfo,
-      creatorUserId,
-      languages.split(','), // Assuming languages are entered as comma-separated values
-      questionText,
-      tools.split(','), // Assuming tools are entered as comma-separated values
-      new Date().toDateString(),
-      new Date().toLocaleTimeString()
-    );
-
-    try {
-        await newQuestion.save();
-        // if (onQuestionSubmit) {
-        //   onQuestionSubmit(newQuestion);
-        // }
-        onQuestionSubmit && onQuestionSubmit(newQuestion);
-      } catch (error) {
-        console.error("Error saving the question: ", error);
-      }
   };
 
-  return (
-    <div className="question-submit-component">
-      <form onSubmit={handleSubmit}>
-        <textarea
-          value={questionText}
-          onChange={(e) => setQuestionText(e.target.value)}
-          placeholder="Write your question here"
-          required
-        />
+  addField = (field) => {
+    this.setState(prevState => ({
+      [field]: [...prevState[field], '']
+    }));
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.onSubmit(this.state); // Pass the state back to the parent component
+    this.props.onClose(); // Close the modal
+  };
+
+  renderFieldGroup = (field) => {
+    return this.state[field].map((item, index) => (
+      <div key={index}>
         <input
           type="text"
-          value={additionalInfo}
-          onChange={(e) => setAdditionalInfo(e.target.value)}
-          placeholder="Additional information"
+          value={item}
+          onChange={(e) => this.handleInputChange(e, field, index)}
         />
-        <input
-          type="text"
-          value={languages}
-          onChange={(e) => setLanguages(e.target.value)}
-          placeholder="Languages (comma-separated)"
-        />
-        <input
-          type="text"
-          value={tools}
-          onChange={(e) => setTools(e.target.value)}
-          placeholder="Tools (comma-separated)"
-        />
-        <button type="submit">Post Question</button>
-      </form>
-    </div>
-  );
-};
+      </div>
+    ));
+  };
+
+  render() {
+    return (
+      <div className="question-submit-modal">
+        <form onSubmit={this.handleSubmit} className="question-form">
+          <div className="form-field">
+            <h3>Question</h3>
+            <textarea
+              value={this.state.questionText}
+              onChange={(e) => this.handleInputChange(e, 'questionText')}
+              placeholder="Enter your question"
+              required
+            />
+          </div>
+          <div className="form-field">
+            <h3>Additional Information</h3>
+            <textarea
+              value={this.state.additionalInfo}
+              onChange={(e) => this.handleInputChange(e, 'additionalInfo')}
+              placeholder="Enter any additional information"
+            />
+          </div>
+          <div className="form-field">
+            <h3>Languages</h3>
+            {this.renderFieldGroup('languages')}
+            <button type="button" onClick={() => this.addField('languages')}>Add Language</button>
+          </div>
+          <div className="form-field">
+            <h3>Tools</h3>
+            {this.renderFieldGroup('tools')}
+            <button type="button" onClick={() => this.addField('tools')}>Add Tool</button>
+          </div>
+          <div className="form-field">
+            <h3>Expiration Date and Time</h3>
+            <input
+              type="datetime-local"
+              value={this.state.expirationDateTime}
+              onChange={(e) => this.handleInputChange(e, 'expirationDateTime')}
+            />
+          </div>
+          <button type="submit">Submit Question</button>
+        </form>
+      </div>
+    );
+  }
+}
 
 export default QuestionSubmitComponent;
