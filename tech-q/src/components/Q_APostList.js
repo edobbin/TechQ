@@ -72,7 +72,7 @@ class Q_APostList extends Component {
         return (
             <div>
               <div>No Questions Yet. Ask away.</div>
-              <button onClick={this.handleCreatePost}>Create Post</button>
+              {/* <button onClick={this.handleCreatePost}>Create Post</button> */}
             </div>
           );
     }
