@@ -1,16 +1,7 @@
 import React from 'react'
-
+import { Link, NavLink, useLocation } from 'react-router-dom';
 function Footer() {
-    const sectionStyle = {
-        padding: '2%',
-        paddingTop: '5%',
-        alignItema: 'center',
-        maxWidth: '75%',
-        display: 'flex',
-        flexDirection: 'column',
-        textAlign: 'left',
-        margin: '0 auto',
-      };
+    
     
       const footerStyle = {
         position: 'fixed',
@@ -24,7 +15,7 @@ function Footer() {
       }
   return (
     <div><footer style={footerStyle}>
-    <p>&copy; 2023 TechQ. All rights reserved. <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
+    <p>&copy; 2023 TechQ. All rights reserved. <NavLink to="/privacy">Privacy Policy</NavLink> | <NavLink to="/terms">Terms of Service</NavLink></p>
     </footer></div>
   )
 }

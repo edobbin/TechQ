@@ -14,16 +14,7 @@ const Contact = () => {
     margin: '0 auto',
   };
 
-  const footerStyle = {
-    position: 'fixed',
-    bottom: '0',
-    width: '100%',
-    backgroundColor: '#6200B3',
-    color: '#fff',
-    textAlign: 'center',
-    padding: '10px 0',
-    marginTop: 'auto',
-  }
+  
 
   return (
     <>
@@ -35,12 +26,7 @@ const Contact = () => {
             <div>Address: 7800 York Rd, Towson, MD 21204</div>
         
     </div>
-    <footer style={footerStyle}>
-    <p>
-      &copy; 2023 TechQ. All rights reserved. <a href="/about">About TechQ</a> |{' '}
-      <a href="/contact">Contact Us</a>
-        </p>
-    </footer>
+    
     </>
   );
 };
