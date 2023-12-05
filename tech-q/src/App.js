@@ -8,7 +8,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Question from './components/Question';
 import Contact from './components/Contact';
-import UserProfile from './components/UserProfile'; // Imported UserProfile
+import Profile from './components/Profile'; 
 import { AuthProvider } from './contexts/AuthContext';
 import MyQuestions from './components/MyQuestions';
 
@@ -25,14 +25,11 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/questions" element={<Question />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/profile" element={<UserProfile />} /> {/* Updated route */}
+          <Route path="/profile" element={<Profile />} /> 
         </Routes>
       </Router>
     </AuthProvider>
   );
 };
 
-// function App() {
-//   return <UserProfile />;
-// }
 export default App;
