@@ -15,7 +15,7 @@ const AnswerComponent = ({ answers }) => {
     <div>
       <h4>Answers:</h4>
       {answers.map((answer, index) => (
-        <div key={index} style={{ border: '1px solid #ddd', padding: '5px', margin: '5px 0' }}>
+        <div key={index} style={{ border: '2px solid #ddd', padding: '5px', margin: '5px 0' }}>
           <p>{answer.content}</p>
           <p>Answered by: {answer.created_by_user}</p>
           <p>Date posted: {formatDate(answer.date_created?.toDate())}</p>

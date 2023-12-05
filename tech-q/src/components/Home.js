@@ -15,7 +15,10 @@ function formatDate(date) {
 const Home = () => {
   const [questions, setQuestions] = useState([]);
   const [answerTextareaValue, setAnswerTextareaValue] = useState('');
+  const [showAnswers, setShowAnswers] = useState(false); // New state for controlling visibility
+  const [selectedQuestion, setSelectedQuestion] = useState(null); // New state to track the selected question
   const navigate = useNavigate();
+
   
   const fetchQuestions = async () => {
     try {
@@ -69,8 +72,12 @@ const Home = () => {
       });
       setAnswerTextareaValue('');
       console.log('Answer posted successfully');
-      // You may want to fetch questions again to get the updated data
+      alert("Answer posted!")
+      // Fetch questions again to get the updated data
       fetchQuestions();
+      
+      // Close the dropdown after submitting the answer
+      setShowAnswers(true);
     } catch (error) {
       console.error('Error adding answer:', error);
     }
@@ -98,14 +105,35 @@ const Home = () => {
     marginTop: 'auto',
   };
 
+  const buttonStyle = {
+    marginLeft: '1%',
+    backgroundColor: '#6200B3',
+    border: 'none',
+    color: 'white',
+    padding: '10px',
+    textAlign: 'center',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '16px',
+    borderRadius: '8px'
+  }
+
+  const toggleAnswers = (questionId) => {
+    // Toggle the dropdown visibility
+    setShowAnswers(!showAnswers);
+    // Set the selected question to the current question
+    setSelectedQuestion(questionId);
+  };
+
   return (
     <>
       <section style={sectionStyle}>
-        <h1>Home Page - All Questions</h1>
+        <h1>All Questions Posted</h1>
         {/* <button onClick={handleLogout}>Logout</button> */}
 
         {/* Display Questions */}
         <div>
+          {/* <h2>All Questions</h2> */}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {questions.map((question) => (
               <div
@@ -119,15 +147,28 @@ const Home = () => {
                 <h3>{question.content}</h3>
                 <p>Created by: {question.created_by_user}</p>
                 <p>Date posted: {formatDate(question.date_created?.toDate())}</p>
-                <AnswerComponent answers={question.answers} />
+
+                {/* Display other details of the question */}
+                {showAnswers && selectedQuestion === question.id && (
+                  <AnswerComponent answers={question.answers} />
+                )}
+
                 <textarea
                   value={answerTextareaValue}
                   onChange={(e) => setAnswerTextareaValue(e.target.value)}
                   placeholder="Your Answer"
-                  style={{maxWidth: '97%'}}
+                  style={{maxWidth: '98%'}}
                 />
-                <button onClick={() => handleAnswerSubmit(question.id)}>Post Answer</button>
-                {/* Display other details of the question */}
+                <button onClick={() => handleAnswerSubmit(question.id)} style={buttonStyle}>
+                  Post Answer
+                </button>
+
+                {/* Button to toggle answers dropdown */}
+                <button onClick={() => toggleAnswers(question.id)} style={buttonStyle}>
+                  {showAnswers && selectedQuestion === question.id
+                    ? 'Hide Answers'
+                    : 'Show Answers'}
+                </button>
               </div>
             ))}
           </div>

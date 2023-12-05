@@ -79,7 +79,19 @@ const Question = () => {
         <form action="post_question.php" method="POST">
           <label htmlFor="question">Your Question:</label>
           <textarea id="question" name="question" value={textareaValue} onChange={handleTextareaChange} rows="5" required></textarea>
-          <button type="submit" onClick={onSubmit}>Post Question</button>
+          <button type="submit" onClick={onSubmit}
+          style={{marginLeft: '1%',
+          backgroundColor: '#6200B3',
+          border: 'none',
+          color: 'white',
+          padding: '10px',
+          textAlign: 'center',
+          textDecoration: 'none',
+          display: 'inline-block',
+          fontSize: '16px',
+          borderRadius: '8px'}}>
+            Post Question
+          </button>
         </form>
 
         {/* <h2>Your Previous Questions</h2>
