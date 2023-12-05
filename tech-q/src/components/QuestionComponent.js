@@ -2,7 +2,7 @@ import { collection, addDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from '../firebase'; // Adjust the import path as per your project structure
 
 class Question {
-  constructor(additional_info, creator_user_ID, languages, question, tools, date, time,question_difficulty) {
+  constructor(additional_info, creator_user_ID, languages, question, tools, date, time,question_difficulty,question_ID) {
     this.additional_info = additional_info;
     this.creator_user_ID = creator_user_ID;
     this.languages = languages; 
@@ -40,6 +40,25 @@ class Question {
       // To remove the object, you can set it to null in the component where it's being used
     } catch (error) {
       console.error("Error deleting document: ", error);
+    }
+  }
+
+  async update(updates) {
+    try {
+      await this.delete(); // Delete the current document
+
+      // Update properties
+      Object.keys(updates).forEach(key => {
+        if (this.hasOwnProperty(key)) {
+          this[key] = updates[key];
+        }
+      });
+
+      await this.save(); // Save the updated document
+      console.log("Question updated with ID: ", this.question_ID);
+    } catch (error) {
+      console.error("Error updating question: ", error);
+      throw error;
     }
   }
 }

@@ -3,6 +3,7 @@ import { collection, getDocs, query, where, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import Q_APostComponent from './Q_APostComponent';
 import QuestionCard from './QuestionCard';
+import QuestionSubmitComponent from './QuestionSubmitComponent';
 
 class Q_APostList extends Component {
   constructor(props) {
@@ -11,9 +12,11 @@ class Q_APostList extends Component {
       posts: [],
       currentPage: 1,
       postsPerPage: 10,
-      creatingNewPost: false
+      creatingNewPost: false,
+      newPostData: null
     };
     this.handleCreatePost = this.handleCreatePost.bind(this);
+    this.finalizePostCreation = this.finalizePostCreation.bind(this);
   }
 
   async componentDidMount() {
@@ -37,42 +40,26 @@ class Q_APostList extends Component {
     }
   };
 
-  handleCreatePost = async () => {
-    const uniquePostID = Math.random().toString(36).substr(2, 9); // Random ID
-  
-    // Create an initial empty structure for the new Q_APostComponent instance
-    const newPostInitialState = {
-        questionStruct: [new QuestionCard({}), {}], // Empty initial data
-        submissions: [], // Empty submissions
-        qaPostID: uniquePostID, // Random ID
-        postDuration: null,
-        postExpirationDateTime: null // To be set by the user
-    };
-  
-    try {
-      // Save the new post to Firebase
-      const docRef = await addDoc(collection(db, "qapost"), {
-        // Structure the document as needed for Firebase
-        qaPostID: uniquePostID,
-        question: {}, // Representing an empty question
-        answers: [], // Initially no answers
-        postDuration: null,
-        postExpirationDateTime: null
-      });
-  
-      // Update the local state to switch to post creation mode and pass the initial data
-      this.setState({ 
-        creatingNewPost: true,
-        newPostData: { ...newPostInitialState, qaPostID: docRef.id } // Include the Firebase-generated ID
-      });
-    } catch (error) {
-      console.error("Error creating new post in Firebase:", error);
-    }
+  handleCreatePost = () => {
+    this.setState({ creatingNewPost: true, newPostData: null });
   };
+  
 
   handlePageChange = (pageNumber) => {
     this.setState({ currentPage: pageNumber });
   };
+
+  finalizePostCreation = (questionObject, postDuration) => {
+    const uniquePostID = Math.random().toString(36).substr(2, 9); // Random ID
+  
+    const newPostInitialState = {
+      questionStruct: [new QuestionCard(questionObject), questionObject], // Filled with user input
+      submissions: [], // Initially empty submissions
+      qaPostID: uniquePostID, // Random ID
+      postDuration: postDuration, // User-defined post duration
+      postExpirationDateTime: null // Calculate based on postDuration
+    };
+  }
 
   renderPosts = () => {
     const { currentPage, postsPerPage, posts } = this.state;
@@ -96,32 +83,26 @@ class Q_APostList extends Component {
   };
 
   render() {
-    const { currentPage, postsPerPage, posts, creatingNewPost } = this.state;
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(posts.length / postsPerPage); i++) {
-      pageNumbers.push(i);
-    }
-  
+    const { currentPage, postsPerPage, posts, creatingNewPost, newPostData } = this.state;
+
     return (
-      <div className="q-a-post-list">
+        <div className="q-a-post-list">
         {creatingNewPost ? (
-          <Q_APostComponent initialData={/* initial data for new post */} />
+            <>
+            <QuestionSubmitComponent onQuestionSubmit={(questionObject) => this.finalizePostCreation(questionObject, /* postDuration from user input */)}/>
+            {/* Add post duration input field here */}
+            </>
         ) : (
-          <>
+            <>
             {this.renderPosts()}
-            <div className="pagination">
-              {pageNumbers.map(number => (
-                <button key={number} onClick={() => this.handlePageChange(number)}>
-                  {number}
-                </button>
-              ))}
-            </div>
+            {/* ... existing pagination and other UI elements ... */}
             <button onClick={this.handleCreatePost}>Create Post</button>
-          </>
+            </>
         )}
-      </div>
-    );
-  }
+        </div>
+     );
+    }
+
 }
 
 export default Q_APostList;
