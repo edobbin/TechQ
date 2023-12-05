@@ -17,6 +17,10 @@ class QAPostList extends Component {
     this.props.navigate('/create-post');
   };
 
+  fetchTopAnswer = (post) => {
+    return post.findTopAnswer();
+  };
+
   async componentDidMount() {
     const posts = await this.fetchPosts();
     this.setState({ posts });
@@ -26,21 +30,32 @@ class QAPostList extends Component {
     const snapshot = await getDocs(collection(db, 'qapost'));
     return snapshot.docs.map(doc => {
       const data = doc.data();
-      // Assuming each document contains the necessary fields to create a Post object
       return new Post(data);
     });
   };
+
   render() {
     return (
       <div>
-        {this.state.posts.map((post, index) => (
-          <div key={index} className="post-preview">
-            <QuestionCard question={post.questionStruct} />
-            {this.findTopAnswer(post.submissions)}
-            {/* Display the number of answers */}
-            <div>Answers: {post.submissions.length}</div>
-          </div>
-        ))}
+        {this.state.posts.map((post, index) => {
+          const topAnswer = this.fetchTopAnswer(post.submissions);
+
+          return (
+            <div key={index} className="post-preview">
+              <QuestionCard question={post.questionStruct} />
+              {topAnswer !== "No answers yet. Post an answer" ? (
+                <>
+                  <AnswerCard answer={topAnswer} />
+                  <div>Answers: {post.submissions.length}</div>
+                </>
+              ) : (
+                <div className="no-answers">
+                  {topAnswer}
+                </div>
+              )}
+            </div>
+          );
+        })}
         <button onClick={this.handleCreatePost}>Create Post</button>
       </div>
     );

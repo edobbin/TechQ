@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { db } from '../firebase';
-import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
+import { auth } from '../firebase';
 import Question from './QuestionComponent';
 import QuestionCard from './QuestionCard';
-import AnswerCard from './AnswerCard';
 import Answer from './AnswerComponent';
+import AnswerCard from './AnswerCard';
+import AnswerSubmitComponent from './AnswerSubmitComponent'
+
 import './QAPost.css'
 
 class Post extends Component {
@@ -32,6 +35,32 @@ class Post extends Component {
     const user = auth.currentUser;
   return user ? user.uid : null;
   };
+
+  findTopAnswer = () => {
+    const { submissions } = this.state;
+
+    if (submissions.length === 0) {
+      return "No answers yet. Post an answer";
+    }
+
+    if (submissions.length === 1) {
+      return submissions[0];
+    }
+
+    // Find the highest number of votes
+    let maxVotes = Math.max(...submissions.map(sub => sub.props.answer.answer_votes));
+    // Filter submissions that have the highest votes
+    let topAnswers = submissions.filter(sub => sub.props.answer.answer_votes === maxVotes);
+
+    // Randomly select one of the top answers if there's more than one
+    if (topAnswers.length > 1) {
+      let randomIndex = Math.floor(Math.random() * topAnswers.length);
+      return topAnswers[randomIndex];
+    } else {
+      return topAnswers[0];
+    }
+  };
+
 
   createQuestion = async (userID) => {
     // Create a Question object
