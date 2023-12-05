@@ -40,9 +40,20 @@ const Question = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    // Trim the value to remove leading and trailing whitespaces
+    const trimmedValue = textareaValue.trim();
+
+    if (!trimmedValue) {
+      // Handle the case where the question is empty
+      console.error("Question cannot be empty");
+      alert("Question cannot be empty.")
+      // You can display an error message or prevent the submission
+      return;
+    }
     if (!user || !user.uid) {
       // Handle the case where the user is not authenticated
       console.error("User not authenticated");
+      
       // Redirect to login or handle accordingly
       return;
     }

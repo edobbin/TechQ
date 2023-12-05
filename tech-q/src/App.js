@@ -8,7 +8,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Question from './components/Question';
 import Contact from './components/Contact';
-import UserProfile from './UserProfile'; // Imported UserProfile
+import UserProfile from './components/UserProfile'; // Imported UserProfile
 import { AuthProvider } from './contexts/AuthContext';
 import MyQuestions from './components/MyQuestions';
 
