@@ -138,58 +138,98 @@ const Profile = () => {
         {!loadingUserData && (
           <div>
             <p>First Name: {isEditingProfile ? (
-              <input
-                type="text"
-                name="fname"
-                value={newProfileData.fname}
-                onChange={(e) => setNewProfileData({ ...newProfileData, [e.target.name]: e.target.value })}
-              />
-            ) : userData.fname}</p>
+  <input
+    type="text"
+    name="fname"
+    value={newProfileData.fname}
+    onChange={(e) => {
+      const value = e.target.value;
+      setNewProfileData((prevData) => ({
+        ...prevData,
+        [e.target.name]: value !== '' ? value : prevData.fname,
+      }));
+    }}
+  />
+) : userData.fname}</p>
 
-            <p>Last Name: {isEditingProfile ? (
-              <input
-                type="text"
-                name="lname"
-                value={newProfileData.lname}
-                onChange={(e) => setNewProfileData({ ...newProfileData, [e.target.name]: e.target.value })}
-              />
-            ) : userData.lname}</p>
+<p>Last Name: {isEditingProfile ? (
+  <input
+    type="text"
+    name="lname"
+    value={newProfileData.lname}
+    onChange={(e) => {
+      const value = e.target.value;
+      setNewProfileData((prevData) => ({
+        ...prevData,
+        [e.target.name]: value !== '' ? value : prevData.lname,
+      }));
+    }}
+  />
+) : userData.lname}</p>
 
-            <p>User Name: {isEditingProfile ? (
-              <input
-                type="text"
-                name="username"
-                value={newProfileData.username}
-                onChange={(e) => setNewProfileData({ ...newProfileData, [e.target.name]: e.target.value })}
-              />
-            ) : userData.username}</p>    
 
-            <p>Email: {isEditingProfile ? (
-              <input
-                type="email"
-                name="email"
-                value={newProfileData.email}
-                onChange={(e) => setNewProfileData({ ...newProfileData, [e.target.name]: e.target.value })}
-              />
-            ) : userData.email}</p>
+<p>User Name: {isEditingProfile ? (
+  <input
+    type="text"
+    name="username"
+    value={newProfileData.username}
+    onChange={(e) => {
+      const value = e.target.value;
+      setNewProfileData((prevData) => ({
+        ...prevData,
+        [e.target.name]: value !== '' ? value : prevData.username,
+      }));
+    }}
+  />
+) : userData.username}</p>
+   
 
-            <p>School: {isEditingProfile ? (
-              <input
-                type="text"
-                name="school"
-                value={newProfileData.school}
-                onChange={(e) => setNewProfileData({ ...newProfileData, [e.target.name]: e.target.value })}
-              />
-            ) : userData.school}</p>
+<p>Email: {isEditingProfile ? (
+  <input
+    type="email"
+    name="email"
+    value={newProfileData.email}
+    onChange={(e) => {
+      const value = e.target.value;
+      setNewProfileData((prevData) => ({
+        ...prevData,
+        [e.target.name]: value !== '' ? value : prevData.email,
+      }));
+    }}
+  />
+) : userData.email}</p>
 
-            <p>Languages: {isEditingProfile ? (
-              <input
-                type="text"
-                name="languages"
-                value={newProfileData.languages}
-                onChange={(e) => setNewProfileData({ ...newProfileData, [e.target.name]: e.target.value })}
-              />
-            ) : userData.languages ? userData.languages.join(', ') : ''}</p>
+
+<p>School: {isEditingProfile ? (
+  <input
+    type="text"
+    name="school"
+    value={newProfileData.school}
+    onChange={(e) => {
+      const value = e.target.value;
+      setNewProfileData((prevData) => ({
+        ...prevData,
+        [e.target.name]: value !== '' ? value : prevData.school,
+      }));
+    }}
+  />
+) : userData.school}</p>
+
+<p>Languages: {isEditingProfile ? (
+  <input
+    type="text"
+    name="languages"
+    value={newProfileData.languages}
+    onChange={(e) => {
+      const value = e.target.value;
+      setNewProfileData((prevData) => ({
+        ...prevData,
+        [e.target.name]: value !== '' ? value : prevData.languages,
+      }));
+    }}
+  />
+) : userData.languages ? userData.languages.join(', ') : ''}</p>
+
             {/* Add other profile fields as needed */}
           </div>
         )}
