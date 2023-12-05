@@ -18,8 +18,8 @@ const AnswerComponent = ({ answers }) => {
         <div key={index} style={{ border: '2px solid #ddd', padding: '5px', margin: '5px 0', backgroundColor: '#FFFFFF', borderRadius: '8px'}}>
           <h3>Answer: </h3>
           <p>{answer.content}</p>
-          <p style={{textIndent: '65px', fontSize: '0.85em', color: '#616161'}}><em>Answered by:</em> {answer.created_by_user}</p>
-          <p style={{textIndent: '65px', fontSize: '0.85em', color: '#616161'}}><em>Date posted:</em> {formatDate(answer.date_created?.toDate())}</p>
+          <p style={{textIndent: '20px', fontSize: '0.85em', color: '#616161'}}><em>Answered by:</em> {answer.creator_username}</p>
+          <p style={{textIndent: '20px', fontSize: '0.85em', color: '#616161'}}><em>Date posted:</em> {formatDate(answer.date_created?.toDate())}</p>
         </div>
       ))}
     </div>

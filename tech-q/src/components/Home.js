@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, arrayUnion, doc, updateDoc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import QuestionComponent from './QuestionComponent';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 // function formatDate(date) {
 //   const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -19,6 +20,39 @@ const Home = () => {
   const [showAnswers, setShowAnswers] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const navigate = useNavigate();
+
+  const [person, loading, error, logout] = useAuthState(auth);
+  const [userData, setUserData] = useState({});
+  const [email, setEmail] = useState('');
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
+  const [username, setUsername] = useState('');
+
+useEffect(() => {
+  if (person) {
+    const docRef = doc(db, 'users', person.uid);
+    // console.log('User ID: ', user.uid)
+    const fetchData = async () => {
+      try {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          console.log('Document Data:', data);
+          setUserData(data);
+          setUsername(data.username);
+          console.log('Retrieved username:', data.username);
+          console.log('UserData state:', userData);
+        } else {
+          console.log('Document does not exist');
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }
+}, [person]);
 
   const fetchQuestions = async () => {
     try {
@@ -61,6 +95,7 @@ const Home = () => {
         answers: arrayUnion({
           content: answerTextareaValue,
           created_by_user: auth.currentUser.uid,
+          creator_username: username,
           date_created: new Date(),
         }),
       });

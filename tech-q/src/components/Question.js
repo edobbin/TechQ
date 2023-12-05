@@ -1,14 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { getFirestore } from "firebase/firestore";
 import { useAuth } from '../contexts/AuthContext';
 import { db } from "../firebase";
-import { collection, addDoc, doc } from "firebase/firestore";
+import { auth, storage } from '../firebase';
+import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 import "./Question.css";
 import { onAuthStateChanged } from 'firebase/auth';
 import { setDoc } from 'firebase/firestore';
 
 const Question = () => {
+  const [person, loading, error, logout] = useAuthState(auth);
+  const [userData, setUserData] = useState({});
+  const [email, setEmail] = useState('');
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
+  const [username, setUsername] = useState('');
+
+useEffect(() => {
+  if (person) {
+    const docRef = doc(db, 'users', person.uid);
+    console.log('User ID: ', user.uid)
+    const fetchData = async () => {
+      try {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          console.log('Document Data:', data);
+          setUserData(data);
+          setFname(data.fname);
+          setLname(data.lname);
+          setEmail(data.email);
+          setUsername(data.username);
+          console.log('Retrieved username:', data.username);
+          console.log('UserData state:', userData);
+        } else {
+          console.log('Document does not exist');
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }
+}, [person]);
+
   const { user } = useAuth();
   const navigate = useNavigate();
   const [textareaValue, setTextareaValue] = useState('');
@@ -61,10 +99,11 @@ const Question = () => {
     try {
       // Generate a reference to a new document with an auto-generated ID
       const newQuestionRef = doc(collection(db, 'Post'));
-  
+      console.log(username)
       // Use setDoc to explicitly set the document with the generated ID
       await setDoc(newQuestionRef, {
         created_by_user: user.uid,
+        creator_username: username,
         content: textareaValue,
         answers: [], // Initialize the answers field as an empty array
         points: 0,

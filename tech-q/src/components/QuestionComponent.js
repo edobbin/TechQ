@@ -43,7 +43,7 @@ const QuestionComponent = ({
       }}
     >
       <h3>{question.content}</h3>
-      <p>Created by: {question.created_by_user}</p>
+      <p>Asked by: {question.creator_username}</p>
       <p>Date posted: {formatDate(question.date_created?.toDate())}</p>
 
       {/* Display other details of the question */}
