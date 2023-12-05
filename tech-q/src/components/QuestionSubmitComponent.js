@@ -37,9 +37,10 @@ const QuestionSubmitComponent = ({ onQuestionSubmit }) => {
 
     try {
         await newQuestion.save();
-        if (onQuestionSubmit) {
-          onQuestionSubmit(newQuestion);
-        }
+        // if (onQuestionSubmit) {
+        //   onQuestionSubmit(newQuestion);
+        // }
+        onQuestionSubmit && onQuestionSubmit(newQuestion);
       } catch (error) {
         console.error("Error saving the question: ", error);
       }
