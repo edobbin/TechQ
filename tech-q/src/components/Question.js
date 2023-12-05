@@ -55,6 +55,7 @@ const Question = () => {
       await setDoc(newQuestionRef, {
         created_by_user: user.uid,
         content: textareaValue,
+        answers: [], // Initialize the answers field as an empty array
         points: 0,
         upvotes: 0,
         downvotes: 0,
