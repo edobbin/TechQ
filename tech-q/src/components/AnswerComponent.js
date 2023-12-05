@@ -15,10 +15,11 @@ const AnswerComponent = ({ answers }) => {
     <div>
       <h4>Answers:</h4>
       {answers.map((answer, index) => (
-        <div key={index} style={{ border: '2px solid #ddd', padding: '5px', margin: '5px 0' }}>
+        <div key={index} style={{ border: '2px solid #ddd', padding: '5px', margin: '5px 0', backgroundColor: '#FFFFFF', borderRadius: '8px'}}>
+          <h3>Answer: </h3>
           <p>{answer.content}</p>
-          <p>Answered by: {answer.created_by_user}</p>
-          <p>Date posted: {formatDate(answer.date_created?.toDate())}</p>
+          <p style={{textIndent: '65px', fontSize: '0.85em', color: '#616161'}}><em>Answered by:</em> {answer.created_by_user}</p>
+          <p style={{textIndent: '65px', fontSize: '0.85em', color: '#616161'}}><em>Date posted:</em> {formatDate(answer.date_created?.toDate())}</p>
         </div>
       ))}
     </div>
