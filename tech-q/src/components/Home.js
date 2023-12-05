@@ -76,15 +76,36 @@ const Home = () => {
     }
   };
 
+    const sectionStyle = {
+    padding: '2%',
+    paddingTop: '5%',
+    alignItema: 'center',
+    maxWidth: '75%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'left',
+    margin: '0 auto',
+  };
+
+  const footerStyle = {
+    position: 'fixed',
+    bottom: '0',
+    width: '100%',
+    backgroundColor: '#6200B3',
+    color: '#fff',
+    textAlign: 'center',
+    padding: '10px 0',
+    marginTop: 'auto',
+  };
+
   return (
     <>
-      <section>
-        <h1>Home Page</h1>
-        <button onClick={handleLogout}>Logout</button>
+      <section style={sectionStyle}>
+        <h1>Home Page - All Questions</h1>
+        {/* <button onClick={handleLogout}>Logout</button> */}
 
         {/* Display Questions */}
         <div>
-          <h2>All Questions</h2>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {questions.map((question) => (
               <div
@@ -103,6 +124,7 @@ const Home = () => {
                   value={answerTextareaValue}
                   onChange={(e) => setAnswerTextareaValue(e.target.value)}
                   placeholder="Your Answer"
+                  style={{maxWidth: '97%'}}
                 />
                 <button onClick={() => handleAnswerSubmit(question.id)}>Post Answer</button>
                 {/* Display other details of the question */}
@@ -111,7 +133,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <footer>
+      <footer style={footerStyle}>
         <p>
           &copy; 2023 TechQ. All rights reserved. <a href="/privacy">Privacy Policy</a> |{' '}
           <a href="/terms">Terms of Service</a>
