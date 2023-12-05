@@ -16,7 +16,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Home = () => {
   const [questions, setQuestions] = useState([]);
-  const [answerTextareaValue, setAnswerTextareaValue] = useState('');
+  const [answerTextareaValues, setAnswerTextareaValues] = useState({});
   const [showAnswers, setShowAnswers] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const navigate = useNavigate();
@@ -52,7 +52,13 @@ useEffect(() => {
 
     fetchData();
   }
-}, [person]);
+
+  const initialValues = questions.reduce((acc, question) => {
+    acc[question.id] = '';
+    return acc;
+  }, {});
+  setAnswerTextareaValues(initialValues);
+}, [person, questions]);
 
   const fetchQuestions = async () => {
     try {
@@ -93,13 +99,17 @@ useEffect(() => {
       const questionRef = doc(db, 'Post', questionId);
       await updateDoc(questionRef, {
         answers: arrayUnion({
-          content: answerTextareaValue,
+          content: answerTextareaValues[questionId],
           created_by_user: auth.currentUser.uid,
           creator_username: username,
           date_created: new Date(),
         }),
       });
-      setAnswerTextareaValue('');
+      // Clear the text area value for the submitted question
+      setAnswerTextareaValues((prevValues) => ({
+        ...prevValues,
+        [questionId]: '',
+      }));
       console.log('Answer posted successfully');
       alert('Answer posted!');
       fetchQuestions();
@@ -174,15 +184,20 @@ const sectionStyle = {
   return (
     <>
       <section style={sectionStyle}>
-        <h1>All Questions Posted</h1>
-        <div style={{paddingBottom: '10%'}}>
+      <h1>All Questions Posted</h1>
+        <div style={{ paddingBottom: '10%' }}>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {questions.map((question) => (
               <QuestionComponent
                 key={question.id}
                 question={question}
-                answerTextareaValue={answerTextareaValue}
-                setAnswerTextareaValue={setAnswerTextareaValue}
+                answerTextareaValue={answerTextareaValues[question.id]}
+                setAnswerTextareaValue={(value) =>
+                  setAnswerTextareaValues((prevValues) => ({
+                    ...prevValues,
+                    [question.id]: value,
+                  }))
+                }
                 handleAnswerSubmit={handleAnswerSubmit}
                 showAnswers={showAnswers}
                 toggleAnswers={toggleAnswers}
