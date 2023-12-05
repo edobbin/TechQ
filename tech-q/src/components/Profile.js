@@ -18,8 +18,10 @@ const Profile = () => {
 
 
     // Initialize with existing profile data if available
+    
     fname: user?.fname || '',
     lname: user?.lname || '',
+    username: user?.username || '',
     email: user?.email || '',
     school: user?.school || '',
     languages: user?.languages ? user.languages.join(', ') : '',
@@ -78,6 +80,7 @@ const Profile = () => {
       const updatedProfileData = {
         fname: newProfileData.fname,
         lname: newProfileData.lname,
+        username: newProfileData.username,
         email: newProfileData.email,
         school: newProfileData.school,
         languages: languagesArray,
@@ -151,6 +154,15 @@ const Profile = () => {
                 onChange={(e) => setNewProfileData({ ...newProfileData, [e.target.name]: e.target.value })}
               />
             ) : userData.lname}</p>
+
+            <p>User Name: {isEditingProfile ? (
+              <input
+                type="text"
+                name="username"
+                value={newProfileData.username}
+                onChange={(e) => setNewProfileData({ ...newProfileData, [e.target.name]: e.target.value })}
+              />
+            ) : userData.username}</p>    
 
             <p>Email: {isEditingProfile ? (
               <input
