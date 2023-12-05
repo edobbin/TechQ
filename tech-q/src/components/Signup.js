@@ -81,8 +81,12 @@ const Signup = () => {
       <section>
         <div className="signUpDiv">
           <div>
-            <h1> Sign Up for TechQ </h1>
-            <form>
+          <div className='container2'>
+          <div className='container'>
+            
+            <form className='loginform'>
+              <div className='headcolor'> TechQ SignUp </div>
+              <div className='inside'>
               <div>
                 <label htmlFor='email-address'>Email:</label>
                 <input
@@ -151,6 +155,7 @@ const Signup = () => {
               <button type='submit' onClick={onSubmit}>
                 Sign up
               </button>
+              </div>
             </form>
 
             <p>
@@ -159,6 +164,8 @@ const Signup = () => {
                 Sign in
               </NavLink>
             </p>
+            </div>
+            </div>
           </div>
         </div>
       </section>

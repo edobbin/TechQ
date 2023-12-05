@@ -5,6 +5,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
+import Footer from './components/Footer'
 import { onSnapshot } from 'firebase/firestore';
 
 function UserProfile() {
@@ -56,7 +57,7 @@ function UserProfile() {
   const [skills, setSkills] = useState([]);
   const [profileEditMode, setProfileEditMode] = useState(false);
 
-
+  
   // Fetch user data from Firestore on component mount
   // Fetch user data from Firestore on component mount
   useEffect(() => {
@@ -239,6 +240,9 @@ function UserProfile() {
             </div>
         </div>
         )}
+
+
+        <Footer />
     </>
     );
 };

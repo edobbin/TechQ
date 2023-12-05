@@ -101,6 +101,11 @@
     width: 100%;
     position: relative;
 }
+.loginform button{
+    display: block;
+    align-items: center;
+    position: relative;
+}
 .signUpDiv {
     display: flex;
     justify-content: center;
