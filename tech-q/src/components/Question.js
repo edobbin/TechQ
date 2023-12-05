@@ -143,21 +143,6 @@ useEffect(() => {
             Post Question
           </button>
         </form>
-
-        {/* <h2>Your Previous Questions</h2>
-        <ul>
-          <li>
-            <a className="prevQuestions" href="/question1">
-              How to use JavaScript to create interactive web pages?
-            </a>
-          </li>
-          <li>
-            <a className="prevQuestions" href="/question2">
-              What are the best practices for responsive web design?
-            </a>
-          </li> */}
-          {/* Add more previous questions here */}
-        {/* </ul> */}
       </section>
 
       <footer style={footerStyle}>
