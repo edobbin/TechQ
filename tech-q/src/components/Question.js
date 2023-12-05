@@ -5,6 +5,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { db } from "../firebase";
 import { collection, addDoc, doc } from "firebase/firestore";
 import "./Question.css";
+import { onAuthStateChanged } from 'firebase/auth';
+import { setDoc } from 'firebase/firestore';
 
 const Question = () => {
   const { user } = useAuth();
@@ -38,26 +40,36 @@ const Question = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-try {
-  const docRef = await addDoc(collection(db, "Post"), {
-    created_by_user: user.uid,
-    questionID: db.collection(),
-    content: textareaValue.value,
-    points: 0,
-    upvotes: 0,
-    downvotes: 0,
-    date_created: Date(),
-  });
-  console.log("Document written with ID: ", docRef.id);
-  alert("Question posted");
-     // navigate("/");
-} catch (e) {
-  console.error("Error adding document: ", e);
-}
-
-      
+    if (!user || !user.uid) {
+      // Handle the case where the user is not authenticated
+      console.error("User not authenticated");
+      // Redirect to login or handle accordingly
+      return;
+    }
+    
+    try {
+      // Generate a reference to a new document with an auto-generated ID
+      const newQuestionRef = doc(collection(db, 'Post'));
+  
+      // Use setDoc to explicitly set the document with the generated ID
+      await setDoc(newQuestionRef, {
+        created_by_user: user.uid,
+        content: textareaValue,
+        points: 0,
+        upvotes: 0,
+        downvotes: 0,
+        date_created: new Date(),
+      });
+  
+      console.log("Document written with ID: ", newQuestionRef.id);
+      alert("Question posted");
+      navigate("/home");
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
+
+  
 
   return (
     <>
@@ -69,7 +81,7 @@ try {
           <button type="submit" onClick={onSubmit}>Post Question</button>
         </form>
 
-        <h2>Your Previous Questions</h2>
+        {/* <h2>Your Previous Questions</h2>
         <ul>
           <li>
             <a className="prevQuestions" href="/question1">
@@ -80,9 +92,9 @@ try {
             <a className="prevQuestions" href="/question2">
               What are the best practices for responsive web design?
             </a>
-          </li>
+          </li> */}
           {/* Add more previous questions here */}
-        </ul>
+        {/* </ul> */}
       </section>
 
       <footer style={footerStyle}>
