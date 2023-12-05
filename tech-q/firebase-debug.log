@@ -1,0 +1,65 @@
+[debug] [2023-12-05T19:34:03.270Z] ----------------------------------------------------------------------
+[debug] [2023-12-05T19:34:03.273Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Dobbin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-12-05T19:34:03.274Z] CLI Version:   12.9.1
+[debug] [2023-12-05T19:34:03.274Z] Platform:      win32
+[debug] [2023-12-05T19:34:03.274Z] Node Version:  v20.9.0
+[debug] [2023-12-05T19:34:03.274Z] Time:          Tue Dec 05 2023 14:34:03 GMT-0500 (Eastern Standard Time)
+[debug] [2023-12-05T19:34:03.274Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-05T19:34:03.282Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-05T19:34:03.283Z] > authorizing via signed-in user (ethandobbin37@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Dobbin\Desktop\484 project\TechQ\tech-q
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-12-05T19:37:16.287Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2023-12-05T19:37:16.670Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2023-12-05T19:37:16.670Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project techq-5412b (TechQ) 
+[info] 
+=== Hosting Setup
+[debug] [2023-12-05T19:37:20.155Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/techq-5412b [none]
+[debug] [2023-12-05T19:37:20.311Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/techq-5412b 200
+[debug] [2023-12-05T19:37:20.311Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/techq-5412b {"projectId":"techq-5412b","projectNumber":"75170556973","displayName":"TechQ","name":"projects/techq-5412b","resources":{"hostingSite":"techq-5412b","realtimeDatabaseInstance":"techq-5412b-default-rtdb"},"state":"ACTIVE","etag":"1_44b28351-dab4-473b-b8d1-4b74157c95a2"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[info] +  Wrote App.js/404.html 
+[debug] [2023-12-05T19:39:18.177Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2023-12-05T19:39:18.269Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2023-12-05T19:39:18.269Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"10.7.0","browserURL":"https://www.gstatic.com/firebasejs/10.7.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/10.7.0/firebase.tgz"},"live":{"version":"10.7","browserURL":"https://www.gstatic.com/firebasejs/live/10.7/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/10.7/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/10.7.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/10.7.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/10.7.0/firebase-auth/cordova.js","functions":"https://www.gstatic.com/firebasejs/10.7.0/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/10.7.0/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/10.7.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/10.7.0/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/10.7.0/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js","firestore.memory":"https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.memory.js"}}
+[info] +  Wrote App.js/index.html 
+[info] 
+[info] i  Detected a .git folder at C:\Users\Dobbin\Desktop\484 project\TechQ 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=180012896&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2023-12-05T19:39:39.968Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2023-12-05T19:39:39.968Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2023-12-05T19:39:40.156Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2023-12-05T19:39:40.157Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2023-12-05T19:39:40.164Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2023-12-05T19:39:40.360Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2023-12-05T19:39:40.360Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"edobbin","id":75637438,"node_id":"MDQ6VXNlcjc1NjM3NDM4","avatar_url":"https://avatars.githubusercontent.com/u/75637438?v=4","gravatar_id":"","url":"https://api.github.com/users/edobbin","html_url":"https://github.com/edobbin","followers_url":"https://api.github.com/users/edobbin/followers","following_url":"https://api.github.com/users/edobbin/following{/other_user}","gists_url":"https://api.github.com/users/edobbin/gists{/gist_id}","starred_url":"https://api.github.com/users/edobbin/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/edobbin/subscriptions","organizations_url":"https://api.github.com/users/edobbin/orgs","repos_url":"https://api.github.com/users/edobbin/repos","events_url":"https://api.github.com/users/edobbin/events{/privacy}","received_events_url":"https://api.github.com/users/edobbin/received_events","type":"User","site_admin":false,"name":"Ethan Dobbin","company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"public_repos":7,"public_gists":0,"followers":0,"following":2,"created_at":"2020-12-07T18:40:06Z","updated_at":"2023-11-29T17:56:53Z","private_gists":0,"total_private_repos":2,"owned_private_repos":2,"disk_usage":7878,"collaborators":0,"two_factor_authentication":false,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] +  Success! Logged into GitHub as edobbin 
+[info] 
