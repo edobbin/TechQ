@@ -7,6 +7,16 @@ import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase';
 
+const sectionStyle = {
+  padding: '2%',
+  paddingTop: '5%',
+  alignItema: 'center',
+  maxWidth: '75%',
+  display: 'flex',
+  flexDirection: 'column',
+  textAlign: 'left',
+  margin: '0 auto',
+};
 
 const Profile = () => {
   const { user, logout, updateUserProfile } = useAuth();
@@ -121,6 +131,7 @@ const Profile = () => {
   };
 
   return (
+    <section style={sectionStyle}>
     <div>
     {user ? (
       <>
@@ -248,7 +259,8 @@ const Profile = () => {
     ) : (
       <p>You are not logged in</p>
     )}
-  </div>  );
+  </div>  
+  </section>);
 };
 
 export default Profile;
